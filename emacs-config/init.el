@@ -1,0 +1,1 @@
+/home/voyager1/.emacs.d/init.el
