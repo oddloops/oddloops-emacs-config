@@ -4,10 +4,14 @@
 ;; Set emacs variables
 (defvar default-font-size 125)
 
-;; Font Configuration -----------------------------------------------
+;; -------------------------------------------------------------------
+;; Font Configuration ------------------------------------------------
+;; -------------------------------------------------------------------
 (set-face-attribute 'default nil :height default-font-size)
 
-;; Global Configuration -------------------------------------------
+;; -------------------------------------------------------------------
+;; Global Configuration ----------------------------------------------
+;; -------------------------------------------------------------------
 (global-display-line-numbers-mode 1) ; Displays line numbers
 
 ; Disable line numbers for modes
@@ -32,7 +36,9 @@
 (setq make-backup-files nil)         ; Disable Emacs backups
 (setq create-lockfiles nil)          ; Disable lock files
 
+;; -------------------------------------------------------------------
 ;; Package Configuration ---------------------------------------------
+;; -------------------------------------------------------------------
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -51,17 +57,23 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; Projectile Configuration --------------------------------------------
+;; -------------------------------------------------------------------
+;; Projectile Configuration ------------------------------------------
+;; -------------------------------------------------------------------
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
-;; MaGit Configuration --------------------------------------------------
+;; -------------------------------------------------------------------
+;; MaGit Configuration -----------------------------------------------
+;; -------------------------------------------------------------------
 (use-package magit)
 
-;; Ivy Configuration ----------------------------------------------------
+;; -------------------------------------------------------------------
+;; Ivy Configuration -------------------------------------------------
+;; -------------------------------------------------------------------
 (use-package ivy
   :diminish
   :bind
@@ -87,7 +99,9 @@
 (use-package ivy-rich
   :init (ivy-rich-mode 1))
  
-;; Counsel Configuration --------------------------------------------------
+;; -------------------------------------------------------------------
+;; Counsel Configuration ---------------------------------------------
+;; -------------------------------------------------------------------
 (use-package counsel
   :bind (("M-X" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
@@ -100,7 +114,9 @@
   :config
   (setq which-key-idle-delay 0.2))
 
-;; Org Mode Configuration --------------------------------------------------
+;; -------------------------------------------------------------------
+;; Org Mode Configuration --------------------------------------------
+;; -------------------------------------------------------------------
 (defun org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -112,7 +128,9 @@
   :config
   (setq org-ellipsis " ▾"))
 
-;; Make/Send to directories Configuration -----------------------------------
+;; -------------------------------------------------------------------
+;; Make/Send to directories Configuration ----------------------------
+;; -------------------------------------------------------------------
 (make-directory (expand-file-name "tmp/auto-saves/" user-emacs-directory) t)
 (setq auto-save-list-file-prefix (expand-file-name "tmp/auto-saves/sessions/" user-emacs-directory)
       auto-save-file-name-transforms `((".*" ,(expand-file-name "tmp/auto-saves/" user-emacs-directory) t)))
@@ -126,5 +144,7 @@
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
-;; Modus Theme Configuration -------------------------------------------------
+;; -------------------------------------------------------------------
+;; Modus Theme Configuration -----------------------------------------
+;; -------------------------------------------------------------------
 (load-theme 'modus-vivendi-deuteranopia t)        ; load modus-vivendi t theme
