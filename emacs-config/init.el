@@ -137,7 +137,7 @@
 	org-hide-emphasis-markers t
 	org-agenda-files '("~/org")
 	org-log-done 'time
-	rg-return-follows-link  t
+	org-return-follows-link  t
 	)
   (define-key global-map "\C-cl" 'org-store-link) ; storing links shortcut
   (define-key global-map "\C-ca" 'org-agenda)     ; viewing agenda shortcut
