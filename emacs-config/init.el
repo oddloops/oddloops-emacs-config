@@ -123,11 +123,6 @@
   (visual-line-mode)
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
-
-  ;; org-mode exclusive key-mappings
-  (define-key org-mode-map (kbd "C-c C-g C-r") 'org-shiftmetaright) ; change the level of an org item, use SMR
-  (define-key org-mode-map (kbd "C-c <up>") 'org-priority-up)
-  (define-key org-mode-map (kbd "C-c <down>") 'org-priority-down)
 )
 
 (use-package org
@@ -139,10 +134,16 @@
 	org-log-done 'time
 	org-return-follows-link  t
 	)
-  (define-key global-map "\C-cl" 'org-store-link) ; storing links shortcut
-  (define-key global-map "\C-ca" 'org-agenda)     ; viewing agenda shortcut
-  (define-key global-map "\C-cc" 'org-capture)    ; starting capture shortcut
-
+  ;; org-mode exclusive key-mappings
+  (define-key org-mode-map (kbd "C-c C-g C-r") 'org-shiftmetaright) ; change the level of an org item, use SMR
+  (define-key org-mode-map (kbd "C-c <up>") 'org-priority-up)
+  (define-key org-mode-map (kbd "C-c <down>") 'org-priority-down)
+  
+  :bind
+  (("\C-cl" . org-store-link) ; storing links shortcut
+   ("\C-ca" . org-agenda)     ; viewing agenda shortcut
+   ("\C-cc" . org-capture)    ; starting capture shortcut
+  )
  )
 
 ;; -------------------------------------------------------------------
