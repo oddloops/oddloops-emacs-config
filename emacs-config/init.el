@@ -54,7 +54,8 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 (setq use-package-always-ensure t)
 
 ;; -------------------------------------------------------------------
@@ -119,14 +120,30 @@
 ;; -------------------------------------------------------------------
 (defun org-mode-setup ()
   (org-indent-mode)
+  (visual-line-mode)
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
-  (setq evil-auto-indent nil))
+
+  ;; org-mode exclusive key-mappings
+  (define-key org-mode-map (kbd "C-c C-g C-r") 'org-shiftmetaright) ; change the level of an org item, use SMR
+  (define-key org-mode-map (kbd "C-c <up>") 'org-priority-up)
+  (define-key org-mode-map (kbd "C-c <down>") 'org-priority-down)
+)
 
 (use-package org
   :hook (org-mode . org-mode-setup)
   :config
-  (setq org-ellipsis " ▾"))
+  (setq org-ellipsis " ▾"
+	org-hide-emphasis-markers t
+	org-agenda-files '("~/org")
+	org-log-done 'time
+	rg-return-follows-link  t
+	)
+  (define-key global-map "\C-cl" 'org-store-link) ; storing links shortcut
+  (define-key global-map "\C-ca" 'org-agenda)     ; viewing agenda shortcut
+  (define-key global-map "\C-cc" 'org-capture)    ; starting capture shortcut
+
+ )
 
 ;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------
