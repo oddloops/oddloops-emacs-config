@@ -65,7 +65,12 @@
   :diminish projectile-mode
   :config (projectile-mode)
   :bind-keymap
-  ("C-c p" . projectile-command-map))
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Projects/Code")
+    (setq projectile-project-search-path '("~/Projects/Code")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
 
 ;; -------------------------------------------------------------------
 ;; MaGit Configuration -----------------------------------------------
