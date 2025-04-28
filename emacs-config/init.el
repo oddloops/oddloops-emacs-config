@@ -71,7 +71,6 @@
     (setq projectile-project-search-path '("~/Projects/Code")))
   (setq projectile-switch-project-action #'projectile-dired))
 
-
 ;; -------------------------------------------------------------------
 ;; MaGit Configuration -----------------------------------------------
 ;; -------------------------------------------------------------------
