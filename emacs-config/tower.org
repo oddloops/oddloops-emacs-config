@@ -1,8 +1,0 @@
-#+TITLE: Testing Org
-#+AUTHOR: VINCI
-#+DESCRIPTION: Validate config
-
-* Tasks
-** TODO Validate modes
-** TODO Ensure no bugs
-** DONE compile init.el
