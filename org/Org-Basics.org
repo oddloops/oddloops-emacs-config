@@ -2,14 +2,14 @@
 [[https://orgmode.org/manual/index.html][Org Mode Manual]] \\
 [[https://orgmode.org/worg/orgcard.html][Org Mode Reference Card]]
 ** Key Bindings sub-section
-- SHIFT + TAB: Collapses and cycles through headings
-- CTRL + RET: Insert new header item
-- ALT + RET: Create new item at same level
-- ALT + ARROW: Moves items up/down
-- SHIFT + ALT + ARROW: Promote item
-- CTRL-C CTRL-L (C-c C-l): Org Mode insert link
-- CTRL-C CTRL-O (C-c C-o): open link at cursor
-- CTRL-C CTRL-C (C-c C-c): Run code block
+- *SHIFT + TAB*: Collapses and cycles through headings
+- *CTRL + RET*: Insert new header item
+- *ALT + RET*: Create new item at same level
+- *ALT + ARROW*: Moves items up/down
+- *SHIFT + ALT + ARROW*: Promote item
+- *CTRL-C CTRL-L (/C-c C-l/)*: Org Mode insert link
+- *CTRL-C CTRL-O (/C-c C-o/)*: open link at cursor
+- *CTRL-C CTRL-C (/C-c C-c/)*: Run code block
 ** Rich-text Editing
   - *bold*: through star (*) characters
   - _underline_: through the underscore (_) characters
