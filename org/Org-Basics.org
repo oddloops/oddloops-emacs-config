@@ -1,0 +1,30 @@
+* Org Mode Basics
+[[https://orgmode.org/manual/index.html][Org Mode Manual]]
+[[https://orgmode.org/worg/orgcard.html][Org Mode Reference Card]]
+** Key Bindings sub-section
+- SHIFT + TAB: Collapses and cycles through headings
+- CTRL + RET: Insert new header item
+- ALT + RET: Create new item at same level
+- ALT + ARROW: Moves items up/down
+- SHIFT + ALT + ARROW: Promote item
+- CTRL-C CTRL-L (C-c C-l): Org Mode insert link
+- CTRL-C CTRL-O (C-c C-o): open link at cursor
+- CTRL-C CTRL-C (C-c C-c): Run code block
+** Rich-text Editing
+  - *bold*: through star (*) characters
+  - _underline_: through the underscore (_) characters
+  - /italics/: through the slash (/) characters
+  - ~code~: through the tilda (~) characters
+  - =verbatim=: through the equal (=) characters (used for quoting)
+  - table: uses pipe (|) to construct. TAB for auto-formatting
+  - [X] checklist: use square brackets (C-c C-x C-b)
+** Source blocks
+Can embed blocks of code.
+
+Using the hash (#) and plus (+) symbols with BEGIN/END_SRC.
+/Example/:
+#+BEGIN_SRC emacs-lisp
+  (defun elisp-hello()
+    (message "Hello!"))
+#+END_SRC
+
