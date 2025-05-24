@@ -59,6 +59,19 @@
 (setq use-package-always-ensure t)
 
 ;; -------------------------------------------------------------------
+;; Jinx Spell Chcker Configuration -----------------------------------
+;; -------------------------------------------------------------------
+(use-package jinx
+  :hook (
+	 (text-mode . jinx-mode)
+	 (LaTeX-mode . jinx-mode)
+	 (latex-mode . jinx-mode)
+	 (markdown-mode . jinx-mode)
+	 (org-mode . jinx-mode)
+	 )
+ )
+
+;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
 ;; -------------------------------------------------------------------
 (use-package projectile
@@ -151,6 +164,22 @@
  )
 
 ;; -------------------------------------------------------------------
+;; Org Babel----------------------------------------------------------
+;; -------------------------------------------------------------------
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (C . t)
+     (python . t)
+     (latex . t)
+     )
+   )
+  )
+(setq org-startup-with-latext-preview t)
+
+;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------
 ;; -------------------------------------------------------------------
 (make-directory (expand-file-name "tmp/auto-saves/" user-emacs-directory) t)
@@ -169,4 +198,15 @@
 ;; -------------------------------------------------------------------
 ;; Modus Theme Configuration -----------------------------------------
 ;; -------------------------------------------------------------------
-(load-theme 'modus-vivendi-deuteranopia t)        ; load modus-vivendi t theme
+(use-package modus-themes
+  :ensure t
+  :init
+  ;; Optional settings to customize the look
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil
+        modus-themes-org-blocks 'gray-background
+        modus-themes-region '(bg-only no-extend))
+
+  :config
+  ;; Load the theme (ensure the package is loaded before this line)
+  (load-theme 'modus-vivendi-deuteranopia t))
