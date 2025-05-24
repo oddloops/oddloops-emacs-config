@@ -1,5 +1,5 @@
 * Org Mode Basics
-[[https://orgmode.org/manual/index.html][Org Mode Manual]]
+[[https://orgmode.org/manual/index.html][Org Mode Manual]] \\
 [[https://orgmode.org/worg/orgcard.html][Org Mode Reference Card]]
 ** Key Bindings sub-section
 - SHIFT + TAB: Collapses and cycles through headings
