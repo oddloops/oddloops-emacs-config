@@ -5,11 +5,12 @@
 - *SHIFT + TAB*: Collapses and cycles through headings
 - *CTRL + RET*: Insert new header item
 - *ALT + RET*: Create new item at same level
-- *ALT + ARROW*: Moves items up/down
-- *SHIFT + ALT + ARROW*: Promote item
-- *CTRL-C CTRL-L (*/C-c C-l/*)*: Org Mode insert link
-- *CTRL-C CTRL-O (/C-c C-o/)*: open link at cursor
-- *CTRL-C CTRL-C (/C-c C-c/)*: Run code block
+- *ALT + UP/DOWN ARROW*: Moves items up/down
+- *SHIFT + ALT + UP/DOWN ARROW*: Promote item
+- *CTRL-C CTRL-L (C-c C-l)*: Org Mode insert link
+- *CTRL-C CTRL-O (C-c C-o)*:
+   open link at cursor
+- *CTRL-C CTRL-C (C-c C-c)*: Run code block
 ** Rich-text Editing
   - *bold*: through star (*) characters
   - _underline_: through the underscore (_) characters
@@ -19,12 +20,16 @@
   - table: uses pipe (|) to construct. TAB for auto-formatting
   - [X] checklist: use square brackets (C-c C-x C-b)
 ** Source blocks
-Can embed blocks of code.
+Code blocks can be embeded and run
 
-Using the hash (#) and plus (+) symbols with BEGIN/END_SRC.
+Using the hash (*#*) and plus (*+*) symbols with /BEGIN/END_SRC/.
 /Example/:
 #+BEGIN_SRC emacs-lisp
   (defun elisp-hello()
     (message "Hello!"))
 #+END_SRC
 
+* TODO TO-DO List
+Can set a header to a TODO 
+- /org-todo/ command will set the header to *DONE*
+- /Note/: *SHIFT + LEFT/RIGHT ARROW* can switch the status
