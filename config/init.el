@@ -70,12 +70,12 @@
   :defer t
   :hook (
 	 (text-mode . jinx-mode)
-	 (LaTeX-mode . jinx-mode)
 	 (latex-mode . jinx-mode)
 	 (markdown-mode . jinx-mode)
 	 (org-mode . jinx-mode)
 	 )
- )
+  :bind (("C-M-$" . jinx-correct))
+  :init (setq jinx-languages "en_US"))
 
 ;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
