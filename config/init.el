@@ -1,8 +1,13 @@
 (setq inhibit-startup-message t)     ; Do not show splash screen
 (setq visible-bell nil)              ; Flash when the bell rings
+(tool-bar-mode -1)                   ; Disable toolbar
+(scroll-bar-mode -1)                 ; Disable scroll bar
+(setq package-enable-at-startup nil)
 
 ;; Set emacs variables
-(defvar default-font-size 125)
+(setq default-font-size 125)
+
+(setq user-emacs-directory (expand-file-name "~/.cache/emacs"))
 
 ;; -------------------------------------------------------------------
 ;; Font Configuration ------------------------------------------------
@@ -22,7 +27,7 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (global-auto-revert-mode 1)          ; Revert buffers when file has changed
-(setq gloabl-auto-revert-non-file-buffers t)
+(setq global-auto-revert-non-file-buffers t)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit) ;; ESC quits prompt
 
@@ -62,6 +67,7 @@
 ;; Jinx Spell Chcker Configuration -----------------------------------
 ;; -------------------------------------------------------------------
 (use-package jinx
+  :defer t
   :hook (
 	 (text-mode . jinx-mode)
 	 (LaTeX-mode . jinx-mode)
@@ -75,6 +81,7 @@
 ;; Projectile Configuration ------------------------------------------
 ;; -------------------------------------------------------------------
 (use-package projectile
+  :defer t
   :diminish projectile-mode
   :config (projectile-mode)
   :bind-keymap
@@ -87,7 +94,8 @@
 ;; -------------------------------------------------------------------
 ;; MaGit Configuration -----------------------------------------------
 ;; -------------------------------------------------------------------
-(use-package magit)
+(use-package magit
+  :defer t)
 
 ;; -------------------------------------------------------------------
 ;; Ivy Configuration -------------------------------------------------
@@ -121,11 +129,14 @@
 ;; Counsel Configuration ---------------------------------------------
 ;; -------------------------------------------------------------------
 (use-package counsel
-  :bind (("M-X" . counsel-M-x)
+  :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
 	 :map minibuffer-local-map
 	 ("C-r" . 'counsel-minibuffer-history)))
 
+;; -------------------------------------------------------------------
+;; which-key Configuration--------------------------------------------
+;; -------------------------------------------------------------------
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode  
@@ -135,33 +146,33 @@
 ;; -------------------------------------------------------------------
 ;; Org Mode Configuration --------------------------------------------
 ;; -------------------------------------------------------------------
-(defun org-mode-setup ()
+(defun org-mode-custom-setup ()
+  ;; Org-specific layout
   (org-indent-mode)
   (visual-line-mode)
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
-)
+
+  ;; Visual Fill Column settings
+  (setq visual-fill-column-width 200)
+  (visual-fill-column-mode 1))
 
 (use-package org
-  :hook (org-mode . org-mode-setup)
+  :hook (org-mode . org-mode-custom-setup)
   :config
   (setq org-ellipsis " ▾"
-	org-hide-emphasis-markers t
-	org-agenda-files '("~/org")
-	org-log-done 'time
-	org-return-follows-link  t
-	)
-  ;; org-mode exclusive key-mappings
-  (define-key org-mode-map (kbd "C-c C-g C-r") 'org-shiftmetaright) ; change the level of an org item, use SMR
+        org-hide-emphasis-markers nil
+        org-fontify-emphasize-text t
+        org-agenda-files '("~/org")
+        org-log-done 'time
+        org-return-follows-link t)
+  (define-key org-mode-map (kbd "C-c C-g C-r") 'org-shiftmetaright)
   (define-key org-mode-map (kbd "C-c <up>") 'org-priority-up)
   (define-key org-mode-map (kbd "C-c <down>") 'org-priority-down)
-  
   :bind
-  (("\C-cl" . org-store-link) ; storing links shortcut
-   ("\C-ca" . org-agenda)     ; viewing agenda shortcut
-   ("\C-cc" . org-capture)    ; starting capture shortcut
-  )
- )
+  (("\C-cl" . org-store-link)
+   ("\C-ca" . org-agenda)
+   ("\C-cc" . org-capture)))
 
 ;; -------------------------------------------------------------------
 ;; Org Babel----------------------------------------------------------
@@ -173,11 +184,9 @@
      (shell . t)
      (C . t)
      (python . t)
-     (latex . t)
-     )
-   )
-  )
-(setq org-startup-with-latext-preview t)
+     (latex . t))))
+(setq org-startup-with-latex-preview t)
+(setq org-confirm-babel-evaluate t)
 
 ;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------
@@ -189,8 +198,6 @@
 (setq projectile-known-projects-file (expand-file-name "tmp/projectile-bookmarks.eld" user-emacs-directory)
       lsp-session-file (expand-file-name "tmp/.lsp-session-v1" user-emacs-directory))
 
-(setq user-emacs-directory (expand-file-name "~/.cache/emacs"))
-
 ;; Move customization variables to a separate file and then load them
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
@@ -198,15 +205,4 @@
 ;; -------------------------------------------------------------------
 ;; Modus Theme Configuration -----------------------------------------
 ;; -------------------------------------------------------------------
-(use-package modus-themes
-  :ensure t
-  :init
-  ;; Optional settings to customize the look
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil
-        modus-themes-org-blocks 'gray-background
-        modus-themes-region '(bg-only no-extend))
-
-  :config
-  ;; Load the theme (ensure the package is loaded before this line)
-  (load-theme 'modus-vivendi-deuteranopia t))
+(load-theme 'modus-vivendi-deuteranopia t)

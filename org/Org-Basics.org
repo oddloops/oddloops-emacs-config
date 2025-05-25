@@ -7,7 +7,7 @@
 - *ALT + RET*: Create new item at same level
 - *ALT + ARROW*: Moves items up/down
 - *SHIFT + ALT + ARROW*: Promote item
-- *CTRL-C CTRL-L (/C-c C-l/)*: Org Mode insert link
+- *CTRL-C CTRL-L (*/C-c C-l/*)*: Org Mode insert link
 - *CTRL-C CTRL-O (/C-c C-o/)*: open link at cursor
 - *CTRL-C CTRL-C (/C-c C-c/)*: Run code block
 ** Rich-text Editing
