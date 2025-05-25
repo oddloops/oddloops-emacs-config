@@ -7,10 +7,10 @@
 - *ALT + RET*: Create new item at same level
 - *ALT + UP/DOWN ARROW*: Moves items up/down
 - *SHIFT + ALT + UP/DOWN ARROW*: Promote item
-- *CTRL-C CTRL-L (C-c C-l)*: Org Mode insert link
-- *CTRL-C CTRL-O (C-c C-o)*:
-   open link at cursor
-- *CTRL-C CTRL-C (C-c C-c)*: Run code block
+- *CTRL-C CTRL-L* (C-c C-l): Org Mode insert link
+- *CTRL-C CTRL-O* (C-c C-o): Open link at cursor
+- *CTRL-C CTRL-C* (C-c C-c): Run code block
+
 ** Rich-text Editing
   - *bold*: through star (*) characters
   - _underline_: through the underscore (_) characters
@@ -19,17 +19,21 @@
   - =verbatim=: through the equal (=) characters (used for quoting)
   - table: uses pipe (|) to construct. TAB for auto-formatting
   - [X] checklist: use square brackets (C-c C-x C-b)
-** Source blocks
-Code blocks can be embeded and run
 
-Using the hash (*#*) and plus (*+*) symbols with /BEGIN/END_SRC/.
-/Example/:
+** Source blocks
+Code blocks can be embeded and ran
+
+Using hash (*#*) and plus (*+*) with /BEGIN/END_SRC/ and lang.
+/emacs lisp Example/:
 #+BEGIN_SRC emacs-lisp
   (defun elisp-hello()
     (message "Hello!"))
 #+END_SRC
 
 * TODO TO-DO List
-Can set a header to a TODO 
+A header can be set as a todo item
 - /org-todo/ command will set the header to *DONE*
 - /Note/: *SHIFT + LEFT/RIGHT ARROW* can switch the status
+
+* DONE Finished List
+CLOSED: [2025-05-24 Sat 22:37]
