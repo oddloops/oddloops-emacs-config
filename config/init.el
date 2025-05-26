@@ -145,7 +145,7 @@
 
 ;; -------------------------------------------------------------------
 ;; Org Mode Configuration --------------------------------------------
-;; -------------------------------------------------------------------
+;; ------------------------------------------------------------------- 
 (defun org-mode-custom-setup ()
   ;; Org-specific layout
   (org-indent-mode)
@@ -153,8 +153,8 @@
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
 
-  ;; Visual Fill Column settings
-  (setq visual-fill-column-width 150)
+  (setq visual-fill-column-width 100
+	visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
 (use-package org
@@ -173,6 +173,8 @@
   (("\C-cl" . org-store-link)
    ("\C-ca" . org-agenda)
    ("\C-cc" . org-capture)))
+
+(use-package visual-fill-column)
 
 ;; -------------------------------------------------------------------
 ;; Org Babel----------------------------------------------------------
