@@ -1,3 +1,4 @@
+(push '(fullscreen . maximized) default-frame-alist)
 (setq inhibit-startup-message t)     ; Do not show splash screen
 (setq visible-bell nil)              ; Flash when the bell rings
 (tool-bar-mode -1)                   ; Disable toolbar
@@ -153,7 +154,7 @@
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
 
-  (setq visual-fill-column-width 100
+  (setq visual-fill-column-width 110
 	visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
