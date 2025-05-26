@@ -154,7 +154,7 @@
   (auto-fill-mode 0)
 
   ;; Visual Fill Column settings
-  (setq visual-fill-column-width 200)
+  (setq visual-fill-column-width 150)
   (visual-fill-column-mode 1))
 
 (use-package org
@@ -187,6 +187,7 @@
      (latex . t))))
 (setq org-startup-with-latex-preview t)
 (setq org-confirm-babel-evaluate t)
+(setq org-babel-python-command "python3")
 
 ;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------
