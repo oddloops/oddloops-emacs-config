@@ -18,7 +18,7 @@
   - ~code~: through the tilda (~) characters
   - =verbatim=: through the equal (=) characters (used for quoting)
   - table: uses pipe (|) to construct. TAB for auto-formatting
-  - [X] checklist: use square brackets (C-c C-x C-b)
+  - [X] checklist: use square brackets (C-c C-x C-b to toggle)
 
 ** Source blocks
 Code blocks can be embedded and ran
@@ -44,4 +44,5 @@ A header can be set as a todo item
 - /Note/: *SHIFT + LEFT/RIGHT ARROW* can switch the status
 
 * DONE Finished List
-CLOSED: [2025-05-24 Sat 22:37]
+CLOSED: [2025-05-26 Mon 11:51]
+- [X] TO-DO Example
