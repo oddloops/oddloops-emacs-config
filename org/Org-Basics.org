@@ -21,14 +21,22 @@
   - [X] checklist: use square brackets (C-c C-x C-b)
 
 ** Source blocks
-Code blocks can be embeded and ran
+Code blocks can be embedded and ran
 
 Using hash (*#*) and plus (*+*) with /BEGIN/END_SRC/ and lang.
 /emacs lisp Example/:
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results output
   (defun elisp-hello()
-    (message "Hello!"))
+      (message "Hello!"))
+  (elisp-hello)
 #+END_SRC
+
+#+BEGIN_SRC python :results output
+  print('Hello World of Org')
+#+END_SRC
+
+#+RESULTS:
+: Hello World of Org
 
 * TODO TO-DO List
 A header can be set as a todo item
