@@ -4,10 +4,7 @@
 (tool-bar-mode -1)                   ; Disable toolbar
 (scroll-bar-mode -1)                 ; Disable scroll bar
 (setq package-enable-at-startup nil)
-
-;; Set emacs variables
 (setq default-font-size 125)
-
 (setq user-emacs-directory (expand-file-name "~/.cache/emacs"))
 
 ;; -------------------------------------------------------------------
@@ -73,8 +70,7 @@
 	 (text-mode . jinx-mode)
 	 (latex-mode . jinx-mode)
 	 (markdown-mode . jinx-mode)
-	 (org-mode . jinx-mode)
-	 )
+	 (org-mode . jinx-mode))
   :bind (("C-M-$" . jinx-correct))
   :init (setq jinx-languages "en_US"))
 
