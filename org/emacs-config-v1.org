@@ -72,7 +72,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
   :bind (("C-M-$" . jinx-correct))
   :init (setq jinx-languages "en_US"))
 #+end_src
-* Projectile & MaGit
+* Projectile configuration
 #+begin_src emacs-lisp
 (use-package projectile
   :defer t
@@ -84,7 +84,10 @@ Using org-babel-tangle to concatenate to generate a new init.el
   (when (file-directory-p "~/Projects/Code")
     (setq projectile-project-search-path '("~/Projects/Code")))
   (setq projectile-switch-project-action #'projectile-dired))
+#+end_src
 
+* MaGit configuration
+#+begin_src emacs-lisp
 (use-package magit
   :defer t)
 #+end_src
