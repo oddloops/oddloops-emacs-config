@@ -192,6 +192,12 @@
 (setq org-confirm-babel-evaluate t)
 (setq org-babel-python-command "python3")
 
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("clang" . "src C"))
+(add-to-list 'org-structure-template-alist '("latex" . "src latex"))
+
 ;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------
 ;; -------------------------------------------------------------------
