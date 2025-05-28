@@ -84,10 +84,9 @@
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "~/Projects/Code")
-    (setq projectile-project-search-path '("~/Projects/Code")))
+  (when (file-directory-p "~/Github/projects")
+    (setq projectile-project-search-path '("~/Github/projects")))
   (setq projectile-switch-project-action #'projectile-dired))
-
 ;; -------------------------------------------------------------------
 ;; MaGit Configuration -----------------------------------------------
 ;; -------------------------------------------------------------------
