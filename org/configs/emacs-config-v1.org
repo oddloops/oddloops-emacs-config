@@ -2,7 +2,7 @@
 #+author: oddloops
 #+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el
 
-Using org-babel-tangle to concatenate to generate a new init.el
+Use _org-babel-tangle_ to concatenate to generate a new init.el
 * UI and Pre-Processing configuration
 #+begin_src emacs-lisp 
 (push '(fullscreen . maximized) default-frame-alist)
@@ -46,6 +46,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
 (setq make-backup-files nil)         ; Disable Emacs backups
 (setq create-lockfiles nil)          ; Disable lock files
 #+end_src
+
 * Package Usage configuration
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
@@ -70,6 +71,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
   (require 'use-package))
 (setq use-package-always-ensure t)
 #+end_src
+
 * Jinx Spell Check configuration
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
@@ -85,6 +87,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
   :bind (("C-M-$" . jinx-correct))
   :init (setq jinx-languages "en_US"))
 #+end_src
+
 * Development configurations
 ** Projectile configuration
 #+begin_src emacs-lisp
@@ -95,8 +98,8 @@ Using org-babel-tangle to concatenate to generate a new init.el
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "~/Projects/Code")
-    (setq projectile-project-search-path '("~/Projects/Code")))
+  (when (file-directory-p "~/Github/projects")
+    (setq projectile-project-search-path '("~/Github/projects")))
   (setq projectile-switch-project-action #'projectile-dired))
 #+end_src
 
@@ -108,6 +111,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
 (use-package magit
   :defer t)
 #+end_src
+
 ** Ivy configuration
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
@@ -150,6 +154,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
 	 :map minibuffer-local-map
 	 ("C-r" . 'counsel-minibuffer-history)))
 #+end_src
+
 ** which-key configuration
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
@@ -161,6 +166,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
   :config
   (setq which-key-idle-delay 0.2))
 #+end_src
+
 ** Org & Babel Configuration
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
@@ -217,6 +223,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
 (add-to-list 'org-structure-template-alist '("clang" . "src C"))
 (add-to-list 'org-structure-template-alist '("latex" . "src latex"))
 #+end_src
+
 ** Directory Configurations
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
@@ -233,6 +240,7 @@ Using org-babel-tangle to concatenate to generate a new init.el
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 #+end_src
+
 ** Modus Theme Configuration (deuteranopia)
 #+begin_src emacs-lisp
 ;; -------------------------------------------------------------------
