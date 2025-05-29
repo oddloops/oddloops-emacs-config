@@ -75,6 +75,20 @@
   :init (setq jinx-languages "en_US"))
 
 ;; -------------------------------------------------------------------
+;; LSP Mode configuration --------------------------------------------
+;; -------------------------------------------------------------------
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook ((c-mode . lsp-deferred)
+         (c++-mode . lsp-deferred)
+         (python-mode . lsp-deferred)
+         (makefile-mode . lsp-deferred))
+  :init 
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
 ;; -------------------------------------------------------------------
 (use-package projectile
