@@ -17,11 +17,11 @@
 ;; -------------------------------------------------------------------
 (global-display-line-numbers-mode 1) ; Displays line numbers
 
-; Disable line numbers for modes
+                                        ; Disable line numbers for modes
 (dolist (mode '(org-mode-hook
-		term-mode-hook
-		shell-mode-hook
-		eshell-mode-hook))
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (global-auto-revert-mode 1)          ; Revert buffers when file has changed
@@ -45,9 +45,9 @@
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("gnu" . "https://elpa.gnu.org/packages/")
-			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -67,42 +67,15 @@
 (use-package jinx
   :defer t
   :hook (
-	 (text-mode . jinx-mode)
-	 (latex-mode . jinx-mode)
-	 (markdown-mode . jinx-mode)
-	 (org-mode . jinx-mode))
+         (text-mode . jinx-mode)
+         (latex-mode . jinx-mode)
+         (markdown-mode . jinx-mode)
+         (org-mode . jinx-mode) )
   :bind (("C-M-$" . jinx-correct))
   :init (setq jinx-languages "en_US"))
 
 ;; -------------------------------------------------------------------
-;; LSP Mode configuration --------------------------------------------
-;; -------------------------------------------------------------------
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :hook ((c-mode . lsp-deferred)
-         (c++-mode . lsp-deferred)
-         (python-mode . lsp-deferred)
-         (makefile-mode . lsp-deferred))
-  :init 
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t))
-
-;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
-;; -------------------------------------------------------------------
-(use-package projectile
-  :defer t
-  :diminish projectile-mode
-  :config (projectile-mode)
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/Github/projects")
-    (setq projectile-project-search-path '("~/Github/projects")))
-  (setq projectile-switch-project-action #'projectile-dired))
-;; -------------------------------------------------------------------
-;; MaGit Configuration -----------------------------------------------
 ;; -------------------------------------------------------------------
 (use-package magit
   :defer t)
@@ -114,16 +87,16 @@
   :diminish
   :bind
   (("C-s" . swiper)
-  :map ivy-minibuffer-map
+   :map ivy-minibuffer-map
    ("TAB" . ivy-alt-done)
    ("C-l" . ivy-alt-done)
    ("C-j" . ivy-next-line)
    ("C-k" . ivy-previous-line)
-  :map ivy-switch-buffer-map
+   :map ivy-switch-buffer-map
    ("C-k" . ivy-previous-line)
    ("C-l" . ivy-done)
    ("C-d" . ivy-switch-buffer-kill)
-  :map ivy-reverse-i-search-map
+   :map ivy-reverse-i-search-map
    ("C-k" . ivy-previous-line)
    ("C-d" . ivy-reverse-i-search-kill))
   :config
@@ -134,15 +107,15 @@
 
 (use-package ivy-rich
   :init (ivy-rich-mode 1))
- 
+
 ;; -------------------------------------------------------------------
 ;; Counsel Configuration ---------------------------------------------
 ;; -------------------------------------------------------------------
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history)))
+         ("C-x b" . counsel-ibuffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history)))
 
 ;; -------------------------------------------------------------------
 ;; which-key Configuration--------------------------------------------
@@ -161,11 +134,7 @@
   (org-indent-mode)
   (visual-line-mode)
   (variable-pitch-mode 1)
-  (auto-fill-mode 0)
-
-  (setq visual-fill-column-width 110
-	visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
+  (auto-fill-mode 0))
 
 (use-package org
   :hook (org-mode . org-mode-custom-setup)
@@ -184,7 +153,14 @@
    ("\C-ca" . org-agenda)
    ("\C-cc" . org-capture)))
 
-(use-package visual-fill-column)
+
+(defun org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . org-mode-visual-fill))
 
 ;; -------------------------------------------------------------------
 ;; Org Babel----------------------------------------------------------
@@ -202,10 +178,36 @@
 (setq org-babel-python-command "python3")
 
 (require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("els" . "src  emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 (add-to-list 'org-structure-template-alist '("clang" . "src C"))
 (add-to-list 'org-structure-template-alist '("latex" . "src latex"))
+
+;; -------------------------------------------------------------------
+;; LSP Mode configuration --------------------------------------------
+;; -------------------------------------------------------------------
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook ((c-mode . lsp-deferred)
+         (c++-mode . lsp-deferred)
+         (python-mode . lsp-deferred)
+         (makefile-mode . lsp-deferred))
+  :init 
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package projectile
+  :defer t
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Github/projects")
+    (setq projectile-project-search-path '("~/Github/projects")))
+  (setq projectile-switch-project-action #'projectile-dired))
 
 ;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------
