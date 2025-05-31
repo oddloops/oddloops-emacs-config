@@ -47,7 +47,8 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   (setq create-lockfiles nil)          ; Disable lock files
 #+end_src
 
-* Package Usage configuration
+* Packages
+** Package configuration
 #+begin_src emacs-lisp
   ;; -------------------------------------------------------------------
   ;; Package Configuration ---------------------------------------------
@@ -87,16 +88,6 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
     :bind (("C-M-$" . jinx-correct))
     :init (setq jinx-languages "en_US"))
 #+end_src
-
-** MaGit configuration
-#+begin_src emacs-lisp
-  ;; -------------------------------------------------------------------
-  ;; Projectile Configuration ------------------------------------------
-  ;; -------------------------------------------------------------------
-  (use-package magit
-    :defer t)
-#+end_src
-
 
 ** Ivy configuration
 #+begin_src emacs-lisp
@@ -239,6 +230,9 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 
 ** Projectile configuration
 #+begin_src emacs-lisp
+  ;; -------------------------------------------------------------------
+  ;; Projectile Configuration ------------------------------------------
+  ;; -------------------------------------------------------------------
   (use-package projectile
     :defer t
     :diminish projectile-mode
@@ -250,6 +244,16 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
       (setq projectile-project-search-path '("~/Github/projects")))
     (setq projectile-switch-project-action #'projectile-dired))
 #+end_src
+
+** MaGit configuration
+#+begin_src emacs-lisp
+;; -------------------------------------------------------------------
+;; MaGit Configuration -----------------------------------------------
+;; -------------------------------------------------------------------
+  (use-package magit
+    :defer t)
+#+end_src
+
 
 ** Directory Configurations
 #+begin_src emacs-lisp
