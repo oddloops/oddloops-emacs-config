@@ -39,6 +39,12 @@
 (setq make-backup-files nil)         ; Disable Emacs backups
 (setq create-lockfiles nil)          ; Disable lock files
 
+(use-package all-the-icons)
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
+
 ;; -------------------------------------------------------------------
 ;; Package Configuration ---------------------------------------------
 ;; -------------------------------------------------------------------

@@ -47,6 +47,15 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   (setq create-lockfiles nil)          ; Disable lock files
 #+end_src
 
+** doom-modeline configuration
+#+begin_src  emacs-lisp
+(use-package all-the-icons)
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
+
+#+end_src
 * Packages
 ** Package configuration
 #+begin_src emacs-lisp
