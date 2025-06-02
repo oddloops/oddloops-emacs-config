@@ -178,6 +178,18 @@
 (add-to-list 'org-structure-template-alist '("clang" . "src C"))
 (add-to-list 'org-structure-template-alist '("latex" . "src latex"))
 
+;; automatically tangle (org-babel-tangle) Emacs config file upon save 
+(defun org-babel-tangle-config ()
+   (when (string-equal (buffer-file-name)
+                       (expand-file-name "~/GitHub/projects/oddloops-emacs-config/org/configs/emacs-config-v1.org"))
+     (let ((org-confirm-babel-evaluate nil))
+       (org-babel-tangle))))
+
+(defun tangle-on-save-setup ()
+  (add-hook 'after-save-hook #'org-babel-tangle-config nil 'local))
+
+(add-hook 'org-mode-hook #'tangle-on-save-setup)
+
 ;; -------------------------------------------------------------------
 ;; LSP Mode configuration --------------------------------------------
 ;; -------------------------------------------------------------------
@@ -191,6 +203,11 @@
   (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui
+:hook (lsp-mode . lsp-ui-mode)
+:custom
+(lsp-ui-doc-position 'bottom))
 
 ;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
