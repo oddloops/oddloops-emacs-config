@@ -3,6 +3,7 @@
 (setq visible-bell nil)              ; Flash when the bell rings
 (tool-bar-mode -1)                   ; Disable toolbar
 (scroll-bar-mode -1)                 ; Disable scroll bar
+(menu-bar-mode -1)                   ; Disable menu bar
 (setq package-enable-at-startup nil)
 (setq default-font-size 125)
 (setq user-emacs-directory (expand-file-name "~/.cache/emacs"))
@@ -186,10 +187,10 @@
 
 ;; automatically tangle (org-babel-tangle) Emacs config file upon save 
 (defun org-babel-tangle-config ()
-   (when (string-equal (buffer-file-name)
-                       (expand-file-name "~/GitHub/projects/oddloops-emacs-config/org/configs/emacs-config-v1.org"))
-     (let ((org-confirm-babel-evaluate nil))
-       (org-babel-tangle))))
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "~/GitHub/projects/oddloops-emacs-config/org/configs/emacs-config-v1.org"))
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle))))
 
 (defun tangle-on-save-setup ()
   (add-hook 'after-save-hook #'org-babel-tangle-config nil 'local))
@@ -199,21 +200,43 @@
 ;; -------------------------------------------------------------------
 ;; LSP Mode configuration --------------------------------------------
 ;; -------------------------------------------------------------------
+(defun lsp-mode-setup ()
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook ((c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
          (python-mode . lsp-deferred)
-         (makefile-mode . lsp-deferred))
+         (makefile-mode . lsp-deferred)
+         (lsp-mode . lsp-mode-setup))
   :init 
   (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
-:hook (lsp-mode . lsp-ui-mode)
-:custom
-(lsp-ui-doc-position 'bottom))
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+;; -------------------------------------------------------------------
+;; Company Mode configuration ----------------------------------------
+;; -------------------------------------------------------------------
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 ;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
@@ -232,8 +255,8 @@
 ;; -------------------------------------------------------------------
 ;; MaGit Configuration -----------------------------------------------
 ;; -------------------------------------------------------------------
-  (use-package magit
-    :defer t)
+(use-package magit
+  :defer t)
 
 ;; -------------------------------------------------------------------
 ;; Make/Send to directories Configuration ----------------------------

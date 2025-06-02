@@ -10,6 +10,7 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   (setq visible-bell nil)              ; Flash when the bell rings
   (tool-bar-mode -1)                   ; Disable toolbar
   (scroll-bar-mode -1)                 ; Disable scroll bar
+  (menu-bar-mode -1)                   ; Disable menu bar
   (setq package-enable-at-startup nil)
   (setq default-font-size 125)
   (setq user-emacs-directory (expand-file-name "~/.cache/emacs"))
@@ -49,11 +50,11 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 
 ** doom-modeline configuration
 #+begin_src  emacs-lisp
-(use-package all-the-icons)
+  (use-package all-the-icons)
 
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1)
+    :custom ((doom-modeline-height 15)))
 
 #+end_src
 * Packages
@@ -221,17 +222,17 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 
 ** Auto-babel-tangle configuration file
 #+begin_src  emacs-lisp
-    ;; automatically tangle (org-babel-tangle) Emacs config file upon save 
-(defun org-babel-tangle-config ()
-   (when (string-equal (buffer-file-name)
-                       (expand-file-name "~/GitHub/projects/oddloops-emacs-config/org/configs/emacs-config-v1.org"))
-     (let ((org-confirm-babel-evaluate nil))
-       (org-babel-tangle))))
+  ;; automatically tangle (org-babel-tangle) Emacs config file upon save 
+  (defun org-babel-tangle-config ()
+    (when (string-equal (buffer-file-name)
+                        (expand-file-name "~/GitHub/projects/oddloops-emacs-config/org/configs/emacs-config-v1.org"))
+      (let ((org-confirm-babel-evaluate nil))
+        (org-babel-tangle))))
 
-(defun tangle-on-save-setup ()
-  (add-hook 'after-save-hook #'org-babel-tangle-config nil 'local))
+  (defun tangle-on-save-setup ()
+    (add-hook 'after-save-hook #'org-babel-tangle-config nil 'local))
 
-(add-hook 'org-mode-hook #'tangle-on-save-setup)
+  (add-hook 'org-mode-hook #'tangle-on-save-setup)
 #+end_src
 
 * Development configurations
@@ -240,12 +241,17 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   ;; -------------------------------------------------------------------
   ;; LSP Mode configuration --------------------------------------------
   ;; -------------------------------------------------------------------
+  (defun lsp-mode-setup ()
+    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (lsp-headerline-breadcrumb-mode))
+
   (use-package lsp-mode
     :commands (lsp lsp-deferred)
     :hook ((c-mode . lsp-deferred)
            (c++-mode . lsp-deferred)
            (python-mode . lsp-deferred)
-           (makefile-mode . lsp-deferred))
+           (makefile-mode . lsp-deferred)
+           (lsp-mode . lsp-mode-setup))
     :init 
     (setq lsp-keymap-prefix "C-c l")
     :config
@@ -255,9 +261,29 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 ** lsp-ui configuration
 #+begin_src  emacs-lisp
   (use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
+    :hook (lsp-mode . lsp-ui-mode)
+    :custom
+    (lsp-ui-doc-position 'bottom))
+#+end_src
+
+** Company mode configuration
+#+begin_src  emacs-lisp
+;; -------------------------------------------------------------------
+;; Company Mode configuration ----------------------------------------
+;; -------------------------------------------------------------------
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
   :custom
-  (lsp-ui-doc-position 'bottom))
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 #+end_src
 
 ** Projectile configuration
@@ -279,9 +305,9 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 
 ** MaGit configuration
 #+begin_src emacs-lisp
-;; -------------------------------------------------------------------
-;; MaGit Configuration -----------------------------------------------
-;; -------------------------------------------------------------------
+  ;; -------------------------------------------------------------------
+  ;; MaGit Configuration -----------------------------------------------
+  ;; -------------------------------------------------------------------
   (use-package magit
     :defer t)
 #+end_src
