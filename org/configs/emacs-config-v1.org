@@ -29,6 +29,7 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   (dolist (mode '(org-mode-hook
                   term-mode-hook
                   shell-mode-hook
+                  treemacs-mode-hook
                   eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -258,12 +259,17 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
     (lsp-enable-which-key-integration t))
 #+end_src
 
-** lsp-ui configuration
+** LSP-Mode additions
 #+begin_src  emacs-lisp
   (use-package lsp-ui
     :hook (lsp-mode . lsp-ui-mode)
     :custom
     (lsp-ui-doc-position 'bottom))
+
+  (use-package lsp-treemacs
+    :after lsp)
+
+  (use-package lsp-ivy)
 #+end_src
 
 ** Company mode configuration
