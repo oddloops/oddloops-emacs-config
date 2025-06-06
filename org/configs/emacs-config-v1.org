@@ -239,24 +239,23 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 * Development configurations
 ** LSP-Mode configuration
 #+begin_src emacs-lisp
-  ;; -------------------------------------------------------------------
-  ;; LSP Mode configuration --------------------------------------------
-  ;; -------------------------------------------------------------------
-  (defun lsp-mode-setup ()
-    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-    (lsp-headerline-breadcrumb-mode))
+    ;; -------------------------------------------------------------------
+    ;; LSP Mode configuration --------------------------------------------
+    ;; -------------------------------------------------------------------
+    (defun lsp-mode-setup ()
+      (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+      (lsp-headerline-breadcrumb-mode))
 
-  (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :hook ((c-mode . lsp-deferred)
-           (c++-mode . lsp-deferred)
-           (python-mode . lsp-deferred)
-           (makefile-mode . lsp-deferred)
-           (lsp-mode . lsp-mode-setup))
-    :init 
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t))
+    (use-package lsp-mode
+      :commands (lsp lsp-deferred)
+      :hook ((c-mode . lsp-deferred)
+             (c++-mode . lsp-deferred)
+             (python-mode . lsp-deferred)
+             (makefile-mode . lsp-deferred)
+             (lsp-mode . lsp-mode-setup)
+             (lsp-mode . lsp-enable-which-key-integration))
+      :init 
+      (setq lsp-keymap-prefix "C-c l")
 #+end_src
 
 ** LSP-Mode additions
