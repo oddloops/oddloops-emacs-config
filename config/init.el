@@ -214,10 +214,11 @@
          (lsp-mode . lsp-mode-setup)
          (lsp-mode . lsp-enable-which-key-integration))
   :init 
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C-c l"))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
+  :config (setq lsp-ui-doc-enable t)
   :custom
   (lsp-ui-doc-position 'bottom))
 
@@ -232,7 +233,8 @@
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
+  :bind (
+         :map company-active-map
          ("<tab>" . company-complete-selection))
         (:map lsp-mode-map
          ("<tab>" . company-indent-or-complete-common))
@@ -242,6 +244,12 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
+
+(use-package lsp-pyright
+  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
 
 ;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
