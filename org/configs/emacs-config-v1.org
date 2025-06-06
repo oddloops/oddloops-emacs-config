@@ -239,23 +239,23 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 * Development configurations
 ** LSP-Mode configuration
 #+begin_src emacs-lisp
-    ;; -------------------------------------------------------------------
-    ;; LSP Mode configuration --------------------------------------------
-    ;; -------------------------------------------------------------------
-    (defun lsp-mode-setup ()
-      (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-      (lsp-headerline-breadcrumb-mode))
+  ;; -------------------------------------------------------------------
+  ;; LSP Mode configuration --------------------------------------------
+  ;; -------------------------------------------------------------------
+  (defun lsp-mode-setup ()
+    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (lsp-headerline-breadcrumb-mode))
 
-    (use-package lsp-mode
-      :commands (lsp lsp-deferred)
-      :hook ((c-mode . lsp-deferred)
-             (c++-mode . lsp-deferred)
-             (python-mode . lsp-deferred)
-             (makefile-mode . lsp-deferred)
-             (lsp-mode . lsp-mode-setup)
-             (lsp-mode . lsp-enable-which-key-integration))
-      :init 
-      (setq lsp-keymap-prefix "C-c l"))
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :hook ((c-mode . lsp-deferred)
+           (c++-mode . lsp-deferred)
+           (python-mode . lsp-deferred)
+           (makefile-mode . lsp-deferred)
+           (lsp-mode . lsp-mode-setup)
+           (lsp-mode . lsp-enable-which-key-integration))
+    :init 
+    (setq lsp-keymap-prefix "C-c l"))
 #+end_src
 
 ** LSP-Mode additions
@@ -283,8 +283,8 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
     :bind (
            :map company-active-map
            ("<tab>" . company-complete-selection))
-          (:map lsp-mode-map
-           ("<tab>" . company-indent-or-complete-common))
+    (:map lsp-mode-map
+          ("<tab>" . company-indent-or-complete-common))
     :custom
     (company-minimum-prefix-length 1)
     (company-idle-delay 0.0))
@@ -295,11 +295,11 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
 
 ** LSP-Pyright configuration
 #+begin_src  emacs-lisp
-(use-package lsp-pyright
-  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+  (use-package lsp-pyright
+    :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-pyright)
+                           (lsp))))  ; or lsp-deferred
 #+end_src
 ** Projectile configuration
 #+begin_src emacs-lisp
