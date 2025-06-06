@@ -211,11 +211,10 @@
          (c++-mode . lsp-deferred)
          (python-mode . lsp-deferred)
          (makefile-mode . lsp-deferred)
-         (lsp-mode . lsp-mode-setup))
+         (lsp-mode . lsp-mode-setup)
+         (lsp-mode . lsp-enable-which-key-integration))
   :init 
   (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
