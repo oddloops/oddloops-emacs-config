@@ -233,11 +233,11 @@
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
-  :bind (
-         :map company-active-map
-         ("<tab>" . company-complete-selection))
+  :bind
+  ( :map company-active-map
+    ("<tab>" . company-complete-selection))
   (:map lsp-mode-map
-        ("<tab>" . company-indent-or-complete-common))
+    ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -249,7 +249,7 @@
   :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
-                         (lsp))))  ; or lsp-deferred
+                         (lsp-deferred))))  ; or lsp-deferred
 
 ;; -------------------------------------------------------------------
 ;; Projectile Configuration ------------------------------------------
