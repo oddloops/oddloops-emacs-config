@@ -208,7 +208,8 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
        (shell . t)
        (C . t)
        (python . t)
-       (latex . t))))
+       (latex . t)
+       (makefile . t))))
   (setq org-startup-with-latex-preview t)
   (setq org-confirm-babel-evaluate t)
   (setq org-babel-python-command "python3")
@@ -219,6 +220,9 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("clang" . "src C"))
   (add-to-list 'org-structure-template-alist '("latex" . "src latex"))
+  (add-to-list 'org-structure-template-alist '("make" . "src makefile"))
+
+  (setq org-src-preserve-indentation t)
 #+end_src
 
 ** Auto-babel-tangle configuration file

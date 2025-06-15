@@ -174,7 +174,8 @@
      (shell . t)
      (C . t)
      (python . t)
-     (latex . t))))
+     (latex . t)
+     (makefile . t))))
 (setq org-startup-with-latex-preview t)
 (setq org-confirm-babel-evaluate t)
 (setq org-babel-python-command "python3")
@@ -185,6 +186,9 @@
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 (add-to-list 'org-structure-template-alist '("clang" . "src C"))
 (add-to-list 'org-structure-template-alist '("latex" . "src latex"))
+(add-to-list 'org-structure-template-alist '("make" . "src makefile"))
+
+(setq org-src-preserve-indentation t)
 
 ;; automatically tangle (org-babel-tangle) Emacs config file upon save 
 (defun org-babel-tangle-config ()
