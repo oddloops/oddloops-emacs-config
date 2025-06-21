@@ -1,6 +1,6 @@
 #+title: Emacs Configuration
 #+author: oddloops
-#+PROPERTY: header-args:emacs-lisp :tangle  ../../config/init.el
+#+PROPERTY: header-args:emacs-lisp :tangle config/init.el
 
 Use _org-babel-tangle_ to concatenate to generate a new init.el
 * UI and Pre-Processing configuration
@@ -230,7 +230,7 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   ;; automatically tangle (org-babel-tangle) Emacs config file upon save 
   (defun org-babel-tangle-config ()
     (when (string-equal (buffer-file-name)
-                        (expand-file-name "~/GitHub/projects/oddloops-emacs-config/org/configs/emacs-config-v1.org"))
+                        (expand-file-name "~/GitHub/projects/oddloops-emacs-config/emacs-config.org"))
       (let ((org-confirm-babel-evaluate nil))
         (org-babel-tangle))))
 
