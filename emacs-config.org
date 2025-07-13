@@ -58,6 +58,7 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
     :custom ((doom-modeline-height 15)))
 
 #+end_src
+
 * Packages
 ** Package configuration
 #+begin_src emacs-lisp
@@ -305,6 +306,7 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
                            (require 'lsp-pyright)
                            (lsp-deferred))))  ; or lsp-deferred
 #+end_src
+
 ** Projectile configuration
 #+begin_src emacs-lisp
   ;; -------------------------------------------------------------------
@@ -330,7 +332,6 @@ Use _org-babel-tangle_ to concatenate to generate a new init.el
   (use-package magit
     :defer t)
 #+end_src
-
 
 ** Directory Configurations
 #+begin_src emacs-lisp
