@@ -155,6 +155,8 @@
      ("\C-ca" . org-agenda)
      ("\C-cc" . org-capture)))
 
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "RESEARCHING(r)" "IN-PROGRESS(p)" "TESTING(t)" "TEST FAILED(f)" "|" "DONE(d)"))))
 
   (defun org-mode-visual-fill ()
     (setq visual-fill-column-width 100
