@@ -70,19 +70,6 @@
   (setq use-package-always-ensure t)
 
   ;; -------------------------------------------------------------------
-  ;; Jinx Spell Chcker Configuration -----------------------------------
-  ;; -------------------------------------------------------------------
-  (use-package jinx
-    :defer t
-    :hook (
-           (text-mode . jinx-mode)
-           (latex-mode . jinx-mode)
-           (markdown-mode . jinx-mode)
-           (org-mode . jinx-mode) )
-    :bind (("C-M-$" . jinx-correct))
-    :init (setq jinx-languages "en_US"))
-
-  ;; -------------------------------------------------------------------
   ;; Ivy Configuration -------------------------------------------------
   ;; -------------------------------------------------------------------
   (use-package ivy
